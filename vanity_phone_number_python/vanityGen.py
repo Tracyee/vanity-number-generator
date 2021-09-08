@@ -15,6 +15,18 @@ digit2letter: List[str] = [
 ]
 
 
+class NumberError(Exception):
+    """Raised if the 10-digit phone number does not have a corresponding 10-letter English word"""
+
+    def __init__(self, message):
+        self.__message = message
+
+    message = property(lambda self: self.__message)
+
+    def __str__(self):
+        return str(self.message)
+
+
 class VanityGen:
     def __init__(self, number: str, lexicon: Lexicon):
         self.number = number
@@ -32,4 +44,11 @@ class VanityGen:
 
     def getMyVanity(self) -> List[str]:
         self.vanityRec("", 0)
-        return self.results
+        if self.results:
+            return self.results
+        else:
+            raise NumberError(
+                "Oops! The phone number {} does not have a corresponding 10-letter English word.".format(
+                    self.number
+                )
+            )
