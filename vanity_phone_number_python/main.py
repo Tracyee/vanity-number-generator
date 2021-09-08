@@ -20,6 +20,11 @@ def main():
         except EOFError:
             print("\nProgram terminated!")
             exit(0)
+        try:
+            int(phoneNumber)
+        except ValueError:
+            print("Please enter a valid phone number!")
+            continue
         vanityGen = VanityGen(phoneNumber, lexicon)
         try:
             vanities = vanityGen.getMyVanity()
