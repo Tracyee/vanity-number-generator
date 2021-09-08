@@ -24,5 +24,8 @@ void VanityGen::vanityRec(string prefix, int depth) {
 
 vector<string> VanityGen::getMyVanity() {
   vanityRec("", 0);
-  return results;
+  if (!results.empty())
+    return results;
+  else
+    throw InvalidNumber{number};
 }

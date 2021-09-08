@@ -4,6 +4,14 @@
 using namespace std;
 
 class Lexicon;
+class InvalidNumber {
+ private:
+  string number;
+
+ public:
+  InvalidNumber(string number) : number{number} {}
+  string getNumber() const { return number; }
+};
 
 class VanityGen {
   string number;
